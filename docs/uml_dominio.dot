@@ -1,0 +1,18 @@
+
+digraph G {
+ graph [rankdir=TB,bgcolor="white",pad="0.12",ranksep="0.55",nodesep="0.35",labelloc="t",label="SIGITEC | Clases del dominio",fontsize=18,fontname="Arial"];
+ node [shape=record,style="rounded,filled",fillcolor="#F4F7FC",color="#60738A",fontname="Arial",fontsize=12];
+ edge [color="#60738A",fontname="Arial",fontsize=11,arrowsize=0.7];
+ Usuario [label="{Usuario «abstracta»|- id: int\l- nombre: String\l- email: String\l|+ getRol(): String\l}",fillcolor="#DAEAF7"];
+ Tecnico [label="{Tecnico|especialidad: String\l|+ getRol(): String\l}"];
+ Supervisor [label="{Supervisor|sectorResponsable: String\l|+ getRol(): String\l}"];
+ Administrador [label="{Administrador||+ getRol(): String\l}"];
+ Casino [label="{Casino|id: int\lnombre: String\lciudad: String\l}"];
+ Equipo [label="{Equipo|id: int\lcodigo: String\ltipo: String\l}"];
+ Incidencia [label="{Incidencia|id: int\ltitulo: String\lprioridad: Prioridad\lestado: EstadoIncidencia\l|+ setEstado(...): void\l}",fillcolor="#DAEAF7"];
+ {rank=same; Tecnico; Supervisor; Administrador}
+ Tecnico->Usuario [arrowhead=empty]; Supervisor->Usuario [arrowhead=empty]; Administrador->Usuario [arrowhead=empty];
+ Incidencia->Usuario [arrowhead=vee,label="asignada a"];
+ Incidencia->Equipo [arrowhead=vee,label="afecta"];
+ Equipo->Casino [arrowhead=vee,label="pertenece a"];
+}

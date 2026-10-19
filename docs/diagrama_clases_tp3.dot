@@ -1,0 +1,24 @@
+
+digraph Clases {
+ graph [fontname="Arial",ranksep="0.80",nodesep="0.38",pad="0.2",bgcolor="white",splines=polyline,rankdir=LR, labelloc="t",label="SIGITEC - Modelo de clases del prototipo TP3",fontsize=20];
+ node [shape=record,fontname="Arial",fontsize=12,color="#52657D",style="rounded,filled",fillcolor="#F5F8FC",margin="0.12,0.06"];
+ edge [fontname="Arial",color="#52657D",arrowsize=0.7];
+ Usuario [label="{Usuario (abstracta)|- id : int\l- nombre : String\l- email : String\l|+ getRol() : String (abstracto)\l+ getDescripcion() : String\l}",fillcolor="#DAEBF7"];
+ Tecnico [label="{Tecnico| - especialidad : String\l|+ getRol() : String\l}"];
+ Supervisor [label="{Supervisor|- sectorResponsable : String\l|+ getRol() : String\l}"];
+ Administrador [label="{Administrador||+ getRol() : String\l}"];
+ Casino [label="{Casino|- id : int\l- nombre : String\l- ciudad : String\l|+ getNombre() : String\l}"];
+ Equipo [label="{Equipo|- id : int\l- codigo : String\l- tipo : String\l|+ getCodigo() : String\l}"];
+ Incidencia [label="{Incidencia|- id : int\l- titulo : String\l- prioridad : Prioridad\l- estado : EstadoIncidencia\l- fechaCreacion : LocalDateTime\l|+ setEstado(estado) : void\l}",fillcolor="#DAEBF7"];
+ Servicio [label="{IncidenciaService|- colaPendientes : Queue\l- ultimoId : int\l|+ registrar(...) : Incidencia\l+ buscarPorTexto(...) : List\l+ cambiarEstado(...) : void\l}"];
+ Repositorio [label="{Repositorio\<T\> (interface)||+ agregar(T)\l+ listar() : List\l+ actualizar(T)\l}",fillcolor="#E4F2E6"];
+ Memoria [label="{RepositorioMemoria\<T\>||+ agregar(T)\l+ listar()\l}"];
+ MySQL [label="{RepositorioIncidenciasMySql||+ agregar(Incidencia)\l+ actualizar(Incidencia)\l}"];
+ Conexion [label="{ConexionMySql||+ abrir() : Connection\l}"];
+ Tecnico -> Usuario [arrowhead=empty]; Supervisor -> Usuario [arrowhead=empty]; Administrador -> Usuario [arrowhead=empty];
+ Equipo -> Casino [arrowhead=vee,label="pertenece"]; Incidencia -> Equipo [arrowhead=vee,label="afecta"];
+ Incidencia -> Usuario [arrowhead=vee,label="responsable"]; Servicio -> Incidencia [arrowhead=vee];
+ Servicio -> Repositorio [style=dashed,arrowhead=vee,label="usa"];
+ Memoria -> Repositorio [style=dashed,arrowhead=empty]; MySQL -> Repositorio [style=dashed,arrowhead=empty];
+ MySQL -> Conexion [style=dashed,arrowhead=vee];
+ }
