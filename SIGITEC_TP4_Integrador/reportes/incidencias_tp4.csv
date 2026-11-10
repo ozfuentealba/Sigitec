@@ -1,0 +1,3 @@
+id;titulo;prioridad;estado;equipo;responsable;fecha_alta
+1;"Servidor sin respuesta (demo)";ALTA;PENDIENTE;"SRV-AP3-001";"T├®cnico Demo";2026-10-19T02:40:07
+101;"Error de comunicación del servidor Cashless";CRITICA;EN_ANALISIS;"SRV-AP3-001";"T├®cnico Demo";2026-10-19T02:49:30

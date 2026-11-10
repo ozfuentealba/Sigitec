@@ -1,0 +1,15 @@
+
+digraph G {
+ graph [rankdir=TB,bgcolor="white",pad="0.12",ranksep="0.48",nodesep="0.4",labelloc="t",label="SIGITEC | Componentes Java y persistencia",fontsize=18,fontname="Arial"];
+ node [shape=record,style="rounded,filled",fillcolor="#F4F7FC",color="#60738A",fontname="Arial",fontsize=12];
+ edge [color="#60738A",fontname="Arial",fontsize=10,arrowsize=0.7];
+ Main [label="{Main|Menú: do-while + switch\l}"];
+ Service [label="{IncidenciaService|+ registrar()\l+ cambiarEstado()\l+ buscarPorTexto()\l+ listarOrdenadasPorPrioridad()\l}"];
+ Repo [label="{Repositorio «interface»|+ agregar()\l+ buscarPorId()\l+ actualizar()\l}",fillcolor="#E4F2E6"];
+ Memoria [label="{RepositorioMemoria|ArrayList + búsqueda\l}"];
+ MySQL [label="{RepositorioIncidenciasMySql|PreparedStatement / JDBC\l}"];
+ DB [label="{ConexionMySql|DriverManager / MySQL\l}"];
+ Main -> Service -> Repo;
+ Memoria -> Repo [style=dashed,arrowhead=empty]; MySQL->Repo [style=dashed,arrowhead=empty]; MySQL->DB;
+ {rank=same; Memoria; MySQL}
+}

@@ -1,0 +1,16 @@
+
+digraph Flujo {
+ graph [rankdir=TB,bgcolor="white",pad="0.2",labelloc="t",label="SIGITEC - Flujo de atención del menú",fontsize=20,fontname="Arial",nodesep="0.5",ranksep="0.42"];
+ node [shape=box,style="rounded,filled",fillcolor="#F3F7FB",color="#5D7186",fontname="Arial",fontsize=12];
+ edge [fontname="Arial",fontsize=11,color="#52657D"];
+ A [label="Iniciar Main"];
+ B [label="Elegir modo de datos\nMemoria / MySQL"];
+ C [label="Mostrar menú: 0 a 9"];
+ D [shape=diamond,label="¿Opción?",fillcolor="#E4F2E6"];
+ E [label="Ejecutar operación\nregistrar / listar / buscar / cambiar"];
+ F [label="Validar y capturar excepción"];
+ G [label="Guardar / consultar repositorio"];
+ H [shape=diamond,label="¿Opción 0?",fillcolor="#E4F2E6"];
+ I [label="Finalizar"];
+ A->B->C->D; D->E [label="1-9"]; D->H [label="0"]; E->F->G->H; H->C [label="no"]; H->I [label="sí"];
+}

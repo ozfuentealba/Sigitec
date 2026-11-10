@@ -1,0 +1,71 @@
+SIGITEC | Modo demostración en memoria
+
+==== SIGITEC - Gestión de Incidencias Técnicas ====
+1. Listar usuarios
+2. Listar casinos
+3. Listar equipos
+4. Listar incidencias
+5. Registrar incidencia
+6. Cambiar estado
+7. Buscar incidencia por texto
+8. Ordenar por prioridad
+9. Atender siguiente pendiente (cola FIFO)
+0. Salir
+Seleccione una opción: 
+--- Incidencias ---
+#101 [ALTA] Falla de ticket en máquina | Estado: PENDIENTE | Equipo: EGM-231 | Responsable: Técnico Cashless
+#102 [CRITICA] Servidor sin respuesta | Estado: PENDIENTE | Equipo: SRV-CASHLESS-01 | Responsable: Técnico Redes
+#103 [MEDIA] ATM con error de conexión | Estado: PENDIENTE | Equipo: ATM-02 | Responsable: Técnico Cashless
+
+==== SIGITEC - Gestión de Incidencias Técnicas ====
+1. Listar usuarios
+2. Listar casinos
+3. Listar equipos
+4. Listar incidencias
+5. Registrar incidencia
+6. Cambiar estado
+7. Buscar incidencia por texto
+8. Ordenar por prioridad
+9. Atender siguiente pendiente (cola FIFO)
+0. Salir
+Seleccione una opción: 
+--- Equipos ---
+#1 EGM-231 - Máquina de juego | Casino Magic
+#2 SRV-CASHLESS-01 - Servidor | Casino Magic
+#3 ATM-02 - Kiosco / Cajero | Sala Allen
+ID de equipo: Título: Descripción: 1. BAJA
+2. MEDIA
+3. ALTA
+4. CRITICA
+Prioridad: Incidencia registrada: #104 [CRITICA] Error en red local | Estado: PENDIENTE | Equipo: SRV-CASHLESS-01 | Responsable: Técnico Cashless
+
+==== SIGITEC - Gestión de Incidencias Técnicas ====
+1. Listar usuarios
+2. Listar casinos
+3. Listar equipos
+4. Listar incidencias
+5. Registrar incidencia
+6. Cambiar estado
+7. Buscar incidencia por texto
+8. Ordenar por prioridad
+9. Atender siguiente pendiente (cola FIFO)
+0. Salir
+Seleccione una opción: 
+--- Incidencias por prioridad ---
+#102 [CRITICA] Servidor sin respuesta | Estado: PENDIENTE | Equipo: SRV-CASHLESS-01 | Responsable: Técnico Redes
+#104 [CRITICA] Error en red local | Estado: PENDIENTE | Equipo: SRV-CASHLESS-01 | Responsable: Técnico Cashless
+#101 [ALTA] Falla de ticket en máquina | Estado: PENDIENTE | Equipo: EGM-231 | Responsable: Técnico Cashless
+#103 [MEDIA] ATM con error de conexión | Estado: PENDIENTE | Equipo: ATM-02 | Responsable: Técnico Cashless
+
+==== SIGITEC - Gestión de Incidencias Técnicas ====
+1. Listar usuarios
+2. Listar casinos
+3. Listar equipos
+4. Listar incidencias
+5. Registrar incidencia
+6. Cambiar estado
+7. Buscar incidencia por texto
+8. Ordenar por prioridad
+9. Atender siguiente pendiente (cola FIFO)
+0. Salir
+Seleccione una opción: Fin del prototipo SIGITEC.
