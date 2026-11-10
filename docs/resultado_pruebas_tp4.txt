@@ -1,0 +1,16 @@
+OK - Factory elige repositorio en memoria
+OK - Herencia y polimorfismo de usuarios
+OK - Registro con ArrayList
+OK - B?squeda por descripci?n
+OK - Ordenamiento por prioridad
+OK - Cola FIFO
+OK - Actualizaci?n mediante repositorio
+OK - Estado EN_PROCESO alineado al esquema AP2
+OK - Arreglo de contadores y ArrayList en resumen
+OK - Exportaci?n CSV con 3 incidencias
+OK - Excepci?n por t?tulo vac?o
+OK - Excepci?n por ID inexistente
+OK - Uso de arreglo fijo de prioridades
+OK - Consulta por ID del patr?n Repository
+OK - Informe total correcto
+PRUEBAS TP4 CORRECTAS: 15/15

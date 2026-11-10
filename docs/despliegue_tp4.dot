@@ -1,0 +1,10 @@
+digraph Despliegue {
+ graph [label="SIGITEC AP4 | Despliegue propuesto",labelloc=t,fontsize=18,fontname="Arial",rankdir=LR,bgcolor="white",nodesep=0.5,ranksep=0.85,pad=0.25];
+ node [shape=box,style="rounded,filled",fillcolor="#f3f6fa",color="#516b83",fontname="Arial",fontsize=12,margin="0.23,0.14"];
+ edge [color="#536a80",fontname="Arial",fontsize=11,penwidth=1.2];
+ subgraph cluster_pc {label="Estación técnica (Windows / Java 17)";color="#b7c7d6";style="rounded"; pc [label="SIGITEC Main\nRepositorio JDBC / interfaz consola",fillcolor="#e6f0fa"];}
+ subgraph cluster_db {label="Servidor MySQL local o LAN";color="#b7c7d6";style="rounded"; mysql [label="MySQL Server 8\nBase sigitec_db",shape=cylinder,fillcolor="#e9f7ec"];}
+ csv [label="Archivo local\nincidencias_tp4.csv",shape=note,fillcolor="#fff3d9"];
+ pc -> mysql [label="TCP/IP 3306 + JDBC\nTLS si se configura"];
+ pc -> csv [label="UTF-8 ;"];
+}

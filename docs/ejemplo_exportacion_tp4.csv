@@ -1,0 +1,4 @@
+id;titulo;prioridad;estado;equipo;responsable;fecha_alta
+101;"Falla de ticket en máquina";ALTA;PENDIENTE;"EGM-231";"Técnico Cashless";2026-11-09T14:47:27.762687682
+102;"Servidor sin respuesta";CRITICA;PENDIENTE;"SRV-CASHLESS-01";"Técnico Redes";2026-11-09T14:47:27.762845908
+103;"ATM con error de conexión";MEDIA;PENDIENTE;"ATM-02";"Técnico Cashless";2026-11-09T14:47:27.762855405

@@ -60,8 +60,13 @@ public class IncidenciaService {
             throws EntidadNoEncontradaException {
         Incidencia incidencia = repositorioIncidencias.buscarPorId(idIncidencia)
                 .orElseThrow(() -> new EntidadNoEncontradaException("No existe una incidencia con ID " + idIncidencia));
+        if (nuevoEstado == null) throw new IllegalArgumentException("El estado es obligatorio");
+        // Se actualiza la copia persistida antes de modificar la instancia en la cola.
+        Incidencia actualizada = new Incidencia(incidencia.getId(), incidencia.getTitulo(),
+                incidencia.getDescripcion(), incidencia.getPrioridad(), incidencia.getEquipo(),
+                incidencia.getResponsable(), nuevoEstado, incidencia.getFechaCreacion());
+        repositorioIncidencias.actualizar(actualizada);
         incidencia.setEstado(nuevoEstado);
-        repositorioIncidencias.actualizar(incidencia);
     }
 
     public Optional<Incidencia> obtenerSiguientePendiente() {

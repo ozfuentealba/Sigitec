@@ -1,12 +1,15 @@
 package ar.edu.sigitec.app;
 
 import ar.edu.sigitec.db.CatalogoMySql;
+import ar.edu.sigitec.db.ConsultaHistorialMySql;
 import ar.edu.sigitec.exception.*;
 import ar.edu.sigitec.model.*;
 import ar.edu.sigitec.repository.*;
 import ar.edu.sigitec.service.*;
 import ar.edu.sigitec.util.LectorConsola;
 import java.sql.SQLException;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.*;
 
 /** Aplicación Java con menú y dos modos: demostración en memoria, y persistencia JDBC/MySQL. */
@@ -20,7 +23,7 @@ public class Main {
 
     public Main(boolean mysql) {
         this.mysql=mysql;
-        Repositorio<Incidencia> repo = mysql ? new RepositorioIncidenciasMySql() : new RepositorioMemoria<>();
+        Repositorio<Incidencia> repo = FabricaRepositorios.crearIncidencias(mysql);
         if (mysql) {
             try { CatalogoMySql.cargar(usuarios,casinos,equipos); }
             catch (SQLException e) { throw new IllegalStateException("No se pudieron cargar catálogos MySQL",e); }
@@ -61,6 +64,9 @@ public class Main {
         System.out.println("7. Buscar incidencia por texto");
         System.out.println("8. Ordenar por prioridad");
         System.out.println("9. Atender siguiente pendiente (cola FIFO)");
+        System.out.println("10. Resumen de incidencias por prioridad");
+        System.out.println("11. Exportar incidencias a CSV");
+        System.out.println("12. Ver historial de estados (MySQL)");
         System.out.println("0. Salir");
     }
 
@@ -76,11 +82,16 @@ public class Main {
                 case 7 -> buscarIncidencias();
                 case 8 -> listar("Incidencias por prioridad",servicio.listarOrdenadasPorPrioridad());
                 case 9 -> atenderPendiente();
+                case 10 -> listar("Resumen por prioridad", new ResumenIncidenciasService().resumir(servicio.listar()));
+                case 11 -> exportarCsv();
+                case 12 -> consultarHistorial();
                 case 0 -> System.out.println("Fin del prototipo SIGITEC.");
                 default -> System.out.println("Opción inválida. Vuelva a intentar.");
             }
         } catch (DatoInvalidoException | EntidadNoEncontradaException | IllegalArgumentException e) {
             System.out.println("Dato incorrecto: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error al escribir el archivo CSV: " + e.getMessage());
         } catch (IllegalStateException e) {
             System.out.println("Error técnico: " + e.getMessage());
         }
@@ -131,6 +142,21 @@ public class Main {
     private void buscarIncidencias() {
         String texto=lector.leerTexto("Texto a buscar: ");
         listar("Búsqueda",servicio.buscarPorTexto(texto));
+    }
+
+    private void exportarCsv() throws IOException {
+        var archivo = new ExportadorIncidenciasCsv().exportar(
+                servicio.listar(), Paths.get("reportes", "incidencias_tp4.csv"));
+        System.out.println("Archivo exportado correctamente: " + archivo);
+    }
+
+    private void consultarHistorial() {
+        if (!mysql) {
+            System.out.println("El historial persistente se consulta en modo --mysql.");
+            return;
+        }
+        int id = lector.leerEntero("ID de incidencia: ");
+        listar("Historial de la incidencia " + id, new ConsultaHistorialMySql().listar(id));
     }
 
     private void atenderPendiente() throws EntidadNoEncontradaException {

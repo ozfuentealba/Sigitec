@@ -1,9 +1,10 @@
 package ar.edu.sigitec.model;
 
-/** Nombres alineados con los estados definidos en la AP2. */
+/** Estados compatibles con el esquema relacional del TP2. */
 public enum EstadoIncidencia {
     PENDIENTE,
     EN_ANALISIS,
+    EN_PROCESO,
     RESUELTA,
     CERRADA
 }

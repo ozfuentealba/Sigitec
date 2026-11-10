@@ -1,0 +1,18 @@
+digraph SIGITEC {
+ graph [label="SIGITEC AP4 | Patrón Repository y acceso a datos",labelloc=t,fontsize=19,fontname="Arial",rankdir=LR,bgcolor="white",nodesep=0.40,ranksep=0.80,pad=0.20];
+ node [shape=box,style="rounded,filled",fillcolor="#f2f6fa",color="#516b83",fontname="Arial",fontsize=11,margin="0.19,0.12"];
+ edge [color="#5e6d7e",arrowsize=0.7,fontname="Arial",fontsize=10];
+ ui [label="Main\nMenú de consola",fillcolor="#e7f0fb"];
+ service [label="IncidenciaService\nReglas y estados",fillcolor="#e7f0fb"];
+ contract [label="«interface»\nRepositorio<Incidencia>\nagregar · listar\nbuscar · actualizar",fillcolor="#fff2dc"];
+ factory [label="FabricaRepositorios\nselecciona implementación",fillcolor="#fff2dc"];
+ memory [label="RepositorioMemoria\nArrayList",fillcolor="#e9f6ed"];
+ mysql [label="RepositorioIncidenciasMySql\nPreparedStatement",fillcolor="#e9f6ed"];
+ db [label="MySQL 8\nsigitec_db",shape=cylinder,fillcolor="#e9f6ed"];
+ report [label="ResumenIncidenciasService\nPrioridad[] + int[]\nArrayList",fillcolor="#e7f0fb"];
+ csv [label="ExportadorIncidenciasCsv\narchivo CSV UTF-8",fillcolor="#e7f0fb"];
+ ui -> service; ui -> factory [style=dashed,label="construye"];
+ factory -> memory;factory -> mysql; memory -> contract [style=dashed,arrowhead=empty];mysql -> contract [style=dashed,arrowhead=empty];
+ service -> contract; mysql -> db [label="JDBC"];
+ ui -> report; ui -> csv;
+}

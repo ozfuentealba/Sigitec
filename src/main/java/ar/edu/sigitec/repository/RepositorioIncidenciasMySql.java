@@ -48,8 +48,7 @@ public final class RepositorioIncidenciasMySql implements Repositorio<Incidencia
                     default -> new Administrador(idUser,nombre,email);
                 };
                 String estado = rs.getString("estado");
-                // PUD AP2: los cinco estados incluyen EN_PROCESO (se resume como EN_ANALISIS en el prototipo).
-                if ("EN_PROCESO".equals(estado)) estado = "EN_ANALISIS";
+                // Se conservan los cinco estados del esquema relacional original.
                 if ("ABIERTA".equals(estado)) estado = "PENDIENTE";
                 Timestamp fecha = rs.getTimestamp("fecha_alta");
                 lista.add(new Incidencia(rs.getInt("id_incidencia"),rs.getString("titulo"),
@@ -127,7 +126,7 @@ public final class RepositorioIncidenciasMySql implements Repositorio<Incidencia
                     try (PreparedStatement ps=cx.prepareStatement(
                             "INSERT INTO historial_estado (id_incidencia,id_estado_anterior,id_estado_nuevo,id_usuario,observacion) VALUES (?,?,?,?,?)")) {
                         ps.setInt(1,i.getId()); ps.setInt(2,anterior); ps.setInt(3,nuevo);
-                        ps.setInt(4,i.getResponsable().getId()); ps.setString(5,"Cambio desde consola TP3");
+                        ps.setInt(4,i.getResponsable().getId()); ps.setString(5,"Cambio desde consola SIGITEC TP4");
                         ps.executeUpdate();
                     }
                 }
